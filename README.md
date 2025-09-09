@@ -10,8 +10,13 @@ See the [documentation](documentation/) directory for more information
 ### Local Development
 
 ```bash
+cd TaskListMCPServer/
 uv virtualenv
 source .venv/bin/activate
 uv sync
-fastmcp run TaskListMCPServer/main.py --host 0.0.0.0 --transport streamable-http --port 8080
+# Source the env file
+uv run --env-file dev.env -- fastmcp run main.py --host 0.0.0.0 --transport streamable-http --port 8080
+# python your_script.py
+# source .env
+# fastmcp run main.py --host 0.0.0.0 --transport streamable-http --port 8080
 ```
