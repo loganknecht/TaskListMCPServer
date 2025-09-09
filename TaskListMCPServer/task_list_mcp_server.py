@@ -1,5 +1,8 @@
 # Python
-from typing import Any
+import json
+import os
+from typing import Any, TypedDict
+import uuid
 # Third-Party
 from fastmcp import FastMCP
 # Custom
@@ -14,7 +17,10 @@ def listTasks() -> str:
     Returns:
         A json object encoded as a string of all tasks
     """
-    pass
+    task_list_data = listJsonFileContents()
+
+    return json.dumps(task_list_data, indent=4)
+
 
 @mcp.tool()
 async def findTask(search_query: str) -> str:
@@ -27,3 +33,40 @@ async def findTask(search_query: str) -> str:
         A json object encoded as a string that is the tasks that matched the search query
     """
     pass
+
+@mcp.tool()
+def createTask(title: str, description: str) -> str:
+    """Creates a new task
+
+    Args:
+        title: The title of the task
+        description: The description of the task
+
+    Returns:
+        ?????
+    """
+    task_id = str(uuid.uuid4())
+
+    new_task: Task = {
+        "id": task_id,
+        "title": title,
+        "description": description,
+        "is_completed": False
+    }
+
+    addTaskToJsonFile(new_task)
+
+    return None
+
+@mcp.tool()
+def deleteAllTasks():
+    """Delete all tasks
+
+    Args:
+
+    Returns:
+        ?????
+    """
+    deleteAllTasksFromJsonFile()
+
+    return None
