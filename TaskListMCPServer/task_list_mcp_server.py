@@ -35,7 +35,7 @@ async def findTask(search_query: str) -> str:
     pass
 
 @mcp.tool()
-def createTask(title: str, description: str) -> str:
+def createTask(title: str, description: str):
     """Creates a new task
 
     Args:
