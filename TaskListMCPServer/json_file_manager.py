@@ -44,3 +44,15 @@ def addTaskToJsonFile(new_task: Task):
 def deleteAllTasksFromJsonFile():
     os.remove(JSON_FILE_PATH)
     createJsonFileIfDoesNotExist(JSON_FILE_PATH)
+
+def deleteTaskFromJsonFile(task_uuid: str):
+    createJsonFileIfDoesNotExist(JSON_FILE_PATH)
+
+    with open(JSON_FILE_PATH, 'r') as json_file:
+        task_list_data = json.load(json_file)
+
+    filtered_tasks = [task for task in task_list_data["tasks"] if task["id"] != task_uuid]
+    task_list_data["tasks"] = filtered_tasks
+
+    with open(JSON_FILE_PATH, 'w') as json_file:
+        json.dump(task_list_data, json_file, indent=4)

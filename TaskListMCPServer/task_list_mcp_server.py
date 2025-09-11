@@ -70,3 +70,17 @@ def deleteAllTasks():
     deleteAllTasksFromJsonFile()
 
     return None
+
+@mcp.tool()
+def deleteTask(task_uuid: str):
+    """Deletes a specific task
+
+    Args:
+        task_uuid - The id of the task to delete
+
+    Returns:
+        ?????
+    """
+    deleteTaskFromJsonFile(task_uuid)
+
+    return None
