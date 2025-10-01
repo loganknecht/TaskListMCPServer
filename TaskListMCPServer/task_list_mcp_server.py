@@ -15,7 +15,7 @@ def listTasks() -> str:
     """List All Tasks
 
     Returns:
-        A json object encoded as a string of all tasks
+        A JSON object encoded as a string of all tasks
     """
     task_list_data = listJsonFileContents()
 
@@ -30,7 +30,7 @@ async def findTask(search_query: str) -> str:
         search_query: the search query to match in all tasks
 
     Returns:
-        A json object encoded as a string that is the tasks that matched the search query
+        A JSON object encoded as a string that is the tasks that matched the search query
     """
     pass
 
@@ -43,7 +43,7 @@ def createTask(title: str, description: str):
         description: The description of the task
 
     Returns:
-        ?????
+        A JSON object encoded as a string of the newly created task
     """
     task_id = str(uuid.uuid4())
 
@@ -56,7 +56,7 @@ def createTask(title: str, description: str):
 
     addTaskToJsonFile(new_task)
 
-    return None
+    return json.dumps(new_task, indent=4)
 
 @mcp.tool()
 def deleteAllTasks():
@@ -65,7 +65,7 @@ def deleteAllTasks():
     Args:
 
     Returns:
-        ?????
+        None
     """
     deleteAllTasksFromJsonFile()
 
@@ -79,7 +79,7 @@ def deleteTask(task_uuid: str):
         task_uuid - The id of the task to delete
 
     Returns:
-        ?????
+        None
     """
     deleteTaskFromJsonFile(task_uuid)
 
